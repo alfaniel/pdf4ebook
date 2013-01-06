@@ -8,14 +8,10 @@ from optparse import OptionParser
 
 usage = "usage:  %prog [-m] [margin] FILENAME"
 parser = OptionParser(usage=usage)
-parser.add_option("-m", "--margins", action="store", dest="margins",
-	default=False, help="BUTTOM_XxBUTTOM_YxTOP_XxTOP_Y\ndefault=None")	
-parser.add_option("-s", "--size", action="store", dest="size",
-	default=False, help="WidthxHeight\ndefault=None")
-parser.add_option("-f", "--format", action="store", dest="format",
-	default=False, help="page format (a5, a6...)\ndefault=None")
-parser.add_option("-O", "--orientation", action="store", dest="orient",
-	default="p", help="page orientation (p, l)\ndefault=p")
+parser.add_option("-m", "--margins", action="store", dest="margins", default=False, help="BUTTOM_XxBUTTOM_YxTOP_XxTOP_Y\ndefault=None")	
+parser.add_option("-s", "--size", action="store", dest="size", default=False, help="WidthxHeight\ndefault=None")
+parser.add_option("-f", "--format", action="store", dest="format", default=False, help="page format (a5, a6...)\ndefault=None")
+parser.add_option("-O", "--orientation", action="store", dest="orient", default="p", help="page orientation (p, l)\ndefault=p")
 
 
 format_to_size = {
@@ -29,10 +25,8 @@ def resize(page, size=[0, 0], format='A6', orient='p'):
 		if orient == 'l':
 			size = [max(size_t), min(size_t)]
 		else: size = [min(size_t), max(size_t)]
-	sx = size[0] / float((page.mediaBox.getUpperRight_x() -\
-		page.mediaBox.getLowerLeft_x()))
-	sy = size[1] / float((page.mediaBox.getUpperRight_y() -\
-		page.mediaBox.getLowerLeft_y()))
+	sx = size[0] / float((page.mediaBox.getUpperRight_x() - page.mediaBox.getLowerLeft_x()))
+	sy = size[1] / float((page.mediaBox.getUpperRight_y() - page.mediaBox.getLowerLeft_y()))
 	page.scale(sx, sy)
 	
 	return page
